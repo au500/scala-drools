@@ -3,7 +3,7 @@ package org.mireynol.rules.drools
 import org.mireynol.rules.api.RulesService
 
 
-object DroolsClasspathRulesService extends RulesService {
+class ClasspathDroolsRulesService extends RulesService {
 
   val drools = new DroolsSupport()
 

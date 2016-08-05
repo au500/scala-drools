@@ -12,9 +12,14 @@ resolvers in ThisBuild ++= Seq( "Sonatype releases" at "https://oss.sonatype.org
 lazy val root = ( project in file( "." ) ).aggregate( scalaRulesAPI, testModel )
 
 lazy val scalaRulesAPI = ( project in file( "scala-rules-api" ) )
+  .dependsOn( testModel % "test" )
   .settings( Seq( libraryDependencies ++=
                   drools ++
-                  kie
+                  kie ++
+                  junit ++
+                  junitInterface ++
+                  slf4j ++
+                  logback
                 )
 
            )
@@ -23,24 +28,3 @@ lazy val testModel = ( project in file( "test-model" ) )
 
 lazy val testRules = ( project in file( "test-rules" ) )
   .dependsOn( testModel )
-
-/**
-  * lazy val museoRules = ( project in file( "museo-rules" ) )
-  * .dependsOn( museoModel )
-  * *
-  * lazy val museoModel = ( project in file( "museo-model" ) )
-  * .settings( Seq( libraryDependencies ++=
-  * sprayJson ++
-  * logback
-  * )
-  * *
-  * )
-  * *
-  * lazy val museoDecisionService = ( project in file( "museo-decision-service" ) )
-  * .dependsOn( museoModel, museoRules )
-  * .settings( Seq( libraryDependencies ++=
-  * drools ++
-  * kie ++
-  * specs2 )
-  * )
-  */

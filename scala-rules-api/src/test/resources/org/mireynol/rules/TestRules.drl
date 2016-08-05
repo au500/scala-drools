@@ -1,0 +1,12 @@
+package org.mireynol.rules;
+
+
+import org.mireynol.rules.model.ModelObject;
+import org.mireynol.rules.model.OtherModelObject;
+
+rule "Test Rule"
+    when
+        ModelObject( value == true )
+    then
+        insert( new OtherModelObject( "success" ) );
+end
