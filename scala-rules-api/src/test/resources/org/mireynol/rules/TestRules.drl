@@ -6,7 +6,7 @@ import org.mireynol.rules.model.OtherModelObject;
 
 rule "Test Rule"
     when
-        ModelObject( value == true )
+        ModelObject( value.isDefined, $value : value.get )
     then
-        insert( new OtherModelObject( "success" ) );
+        insert( new OtherModelObject( Integer.valueOf( $value ) ) );
 end

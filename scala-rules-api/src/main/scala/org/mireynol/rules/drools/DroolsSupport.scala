@@ -8,7 +8,7 @@ import org.mireynol.rules.api.{KnowledgeSessionService, RulesService, Type}
 import scala.collection.mutable.ListBuffer
 
 class DroolsSupport( val engineType : Type.Value, val group : Option[ String ], val artifact : Option[ String ],
-                     val version : Option[ String ] ) extends KnowledgeSessionService with RulesService {
+                     val version : Option[ String ] ) extends KnowledgeSessionService {
 
   var kContainer : KieContainer = null
 
@@ -38,8 +38,7 @@ class DroolsSupport( val engineType : Type.Value, val group : Option[ String ], 
     kContainer.newKieSession( session )
   }
 
-  override def execute( session : String, process : Option[ String ], facts : List[ Any ],
-                        responseType : Class[ _ ] ) : List[ Any ] = {
+  def execute( session : String, process : Option[ String ], facts : List[ Any ], responseType : Class[ _ ] ) : List[ Any ] = {
     val kSession = getKnowledgeSession( session )
     val results = ListBuffer[ Any ]( )
 
@@ -51,5 +50,6 @@ class DroolsSupport( val engineType : Type.Value, val group : Option[ String ], 
     while ( i.hasNext ) results += i.next
 
     results.toList
+
   }
 }
