@@ -36,4 +36,19 @@ class ClasspathDroolsRulesServiceTest {
     assertTrue( results.filter( _.value <= 3 ).length == 0 )
   }
 
+  @Test
+  def should_sum_results_of_rule_execution = {
+    val obj1 = ModelObject( Some( "1" ) )
+    val obj2 = ModelObject( Some( "2" ) )
+    val obj3 = ModelObject( Some( "3" ) )
+    val obj4 = ModelObject( Some( "4" ) )
+    val obj5 = ModelObject( Some( "5" ) )
+
+    val facts = List( obj1, obj2, obj3, obj4, obj4, obj5 )
+
+    val rulesResults = ruleService.execute( kSession, None, facts, classOf[ OtherModelObject ] ).asInstanceOf[ List[ OtherModelObject ] ]
+    rulesResults.reduce
+
+  }
+
 }
