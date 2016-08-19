@@ -47,7 +47,7 @@ class ClasspathDroolsRulesServiceTest {
     val facts = List( obj1, obj2, obj3, obj4, obj4, obj5 )
 
     val rulesResults = ruleService.execute( kSession, None, facts, classOf[ OtherModelObject ] ).asInstanceOf[ List[ OtherModelObject ] ]
-    rulesResults.reduce
+    assertEquals( 15, rulesResults.map( _.value ).sum )
 
   }
 
