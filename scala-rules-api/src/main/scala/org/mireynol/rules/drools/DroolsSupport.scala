@@ -10,6 +10,7 @@ import scala.collection.mutable.ListBuffer
 class DroolsSupport( val engineType : Type.Value, val group : Option[ String ], val artifact : Option[ String ],
                      val version : Option[ String ] ) extends KnowledgeSessionService {
 
+  // TODO - need to do something about this var
   var kContainer : KieContainer = null
 
   // classpath intialization
@@ -21,7 +22,7 @@ class DroolsSupport( val engineType : Type.Value, val group : Option[ String ], 
       //TODO kie scanner intialization
     }
     else {
-      // exception
+      // TODO - handle exception?
     }
 
   }
@@ -45,7 +46,7 @@ class DroolsSupport( val engineType : Type.Value, val group : Option[ String ], 
     for ( fact <- facts ) kSession.insert( fact )
     kSession.fireAllRules( )
 
-    // drools creates a new iterator for every one so store it in a val
+    // .iterator() creates a new object every time so you need to store it in a val
     val i = kSession.getObjects( new ClassObjectFilter( responseType ) ).iterator( )
     while ( i.hasNext ) results += i.next
 
