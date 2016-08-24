@@ -39,7 +39,7 @@ __TODO__ - make this section better
 Drools relies on Maven conventions. It expects that in a KModule project that there will be a META-INF/pom.properties. Since SBT will not generate
 this automatically, you need to create and maintain one yourself.
 
-There is an [example of this](./scala-rules-api/src/test/resources/META-INF/pom.properties) in the project.
+There is an [example of this](./credit-approval-rules/src/main/resources/META-INF/maven/pom.properties) in the project.
 
 Building
 --------
