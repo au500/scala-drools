@@ -14,14 +14,19 @@ object Dependencies {
   val drools = Seq( "org.drools" % "drools-core" % droolsVersion,
                     "org.drools" % "drools-compiler" % droolsVersion )
 
-  val logback = Seq( "ch.qos.logback" % "logback-classic" % logbackVersion )
-
   val kie = Seq( "org.kie" % "kie-api" % droolsVersion,
                  "org.kie" % "kie-internal" % droolsVersion )
+
+  val logback = Seq( "ch.qos.logback" % "logback-classic" % logbackVersion )
 
   val junit = Seq( "junit" % "junit" % junitVersion % "test" )
 
   val junitInterface = Seq( "com.novocode" % "junit-interface" % junitInterfaceVersion % "test" )
 
+  val droolsTest = Seq( "org.drools" % "drools-core" % droolsVersion,
+                        "org.drools" % "drools-compiler" % droolsVersion )
+
+  val kieTest = Seq( "org.kie" % "kie-api" % droolsVersion % "test",
+                     "org.kie" % "kie-internal" % droolsVersion % "test" )
 
 }
