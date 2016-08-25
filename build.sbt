@@ -9,7 +9,7 @@ scalaVersion := "2.11.8"
 resolvers in ThisBuild ++= Seq( "Sonatype releases" at "https://oss.sonatype.org/content/repositories/releases",
                                 "Spray IO Repository" at "http://repo.spray.io/" )
 
-lazy val root = ( project in file( "." ) ).aggregate( scalaRulesAPI, creditApprovalModel, creditApprovalRules )
+lazy val root = ( project in file( "." ) ).aggregate( scalaRulesAPI, creditApprovalModel, creditApprovalRules, creditApprovalService )
 
 lazy val scalaRulesAPI = ( project in file( "scala-rules-api" ) )
   .settings( Seq( libraryDependencies ++=
@@ -48,3 +48,4 @@ lazy val creditApprovalService = ( project in file( "credit-approval-service" ) 
                   sprayJson
                 )
            )
+//  .settings(mainClass in assembly := Some(""))
