@@ -23,7 +23,7 @@ lazy val scalaRulesAPI = ( project in file( "scala-rules-api" ) )
 
            )
 
-lazy val creditApprovalModel = ( project in file( "credit-approval-model" ) )
+lazy val creditApprovalModel = ( project in file( "credit-approval-model" ) ).settings( Seq( libraryDependencies ++= sprayJson ) )
 
 lazy val creditApprovalRules = ( project in file( "credit-approval-rules" ) )
   .dependsOn( creditApprovalModel )
@@ -38,4 +38,13 @@ lazy val creditApprovalRules = ( project in file( "credit-approval-rules" ) )
 
            )
 
-
+lazy val creditApprovalService = ( project in file( "credit-approval-service" ) )
+  .dependsOn( creditApprovalModel, creditApprovalRules, scalaRulesAPI )
+  .settings( Seq( libraryDependencies ++=
+                  logback ++
+                  akka ++
+                  slf4j ++
+                  spray ++
+                  sprayJson
+                )
+           )
