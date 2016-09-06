@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+
+function checkScala {
+    # first draft of script let's assume this is true until we get the cartidge working"
+    SCALA=$(which scala)
+    echo "$SCALA has been found"
+}
+
+function checkSBT {
+    # first draft of script let's assume this is true until we get the cartidge working"
+    SBT=$(which sbt)
+    echo "$SBT has been found"
+}
+
+function build {
+    sbt clean package
+
+function start {
+    checkScala
+    checkSBT
+    build
+
+    sbt "project creditApprovalService" "run"
+
+}
+
+function stop {
+    echo "maybe use killall scala for this?"
+    PROC=$(ps -ef | grep sbt | grep java | grep -v grep | awk '{print $2}')
+    kill -15 $PROC
+}
+
+function restart {
+    echo "ok"
+}
+
+OP=$1
+
+if [ ! -z $OP ]
+    then
+            case $OP in
+                start)
+                    start
+                    ;;
+                stop)
+                    stop
+                    ;;
+                restart)
+                    restart
+                    ;;
+                *)
+                    echo "Invalid operation name : $OP. Usage is ./run (start|stop|restart)"
+                    exit 1
+             esac
+    else
+        echo "You did not specify an operation, exiting"
+        exit 1
+fi
