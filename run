@@ -13,7 +13,8 @@ function checkSBT {
 }
 
 function build {
-    sbt clean package
+    sbt clean package stage
+}
 
 function start {
     checkScala
