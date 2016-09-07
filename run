@@ -1,27 +1,37 @@
 #!/usr/bin/env bash
 
 function checkScala {
-    # first draft of script let's assume this is true until we get the cartidge working"
-    SCALA=$(which scala)
-    echo "$SCALA has been found"
+    if [[ $SCALA_HOME != *[!\ ]* ]]
+        then
+            echo "setting environment variable to the result of which scala"
+            export SCALA=$(which scala)
+         else
+            export SCALA="$SCALA_HOME/bin/scala"
+    fi
+    echo "using $SCALA"
 }
 
 function checkSBT {
-    # first draft of script let's assume this is true until we get the cartidge working"
-    SBT=$(which sbt)
-    echo "$SBT has been found"
+    if [[ $SBT_HOME != *[!\ ]* ]]
+        then
+            echo "setting environment variable to the result of which sbt"
+            export SBT=$(which sbt)
+        else
+            export SBT="$SBT_HOME/bin/sbt"
+
+    fi
+    echo "using $SBT"
 }
 
 function build {
-    sbt clean package stage
+    $SBT clean package
 }
 
 function start {
     checkScala
     checkSBT
     build
-
-    sbt "project creditApprovalService" "run"
+    $SBT "project creditApprovalService" "run"
 
 }
 

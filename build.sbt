@@ -7,7 +7,8 @@ version := "0.0.1-SNAPSHOT"
 scalaVersion := "2.11.8"
 
 resolvers in ThisBuild ++= Seq( "Sonatype releases" at "https://oss.sonatype.org/content/repositories/releases",
-                                "Spray IO Repository" at "http://repo.spray.io/" )
+                                "Spray IO Repository" at "http://repo.spray.io/",
+                                "JBoss Maven Repository" at "https://repository.jboss.org/" )
 
 lazy val root = ( project in file( "." ) ).aggregate( scalaRulesAPI, creditApprovalModel, creditApprovalRules, creditApprovalService )
 
